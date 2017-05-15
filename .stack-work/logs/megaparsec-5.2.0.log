@@ -1,0 +1,20 @@
+Configuring megaparsec-5.2.0...
+Building megaparsec-5.2.0...
+Preprocessing library megaparsec-5.2.0...
+[ 1 of 14] Compiling Text.Megaparsec.Pos ( Text/Megaparsec/Pos.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec/Pos.o )
+[ 2 of 14] Compiling Text.Megaparsec.Error ( Text/Megaparsec/Error.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec/Error.o )
+[ 3 of 14] Compiling Text.Megaparsec.Prim ( Text/Megaparsec/Prim.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec/Prim.o )
+[ 4 of 14] Compiling Text.Megaparsec.String ( Text/Megaparsec/String.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec/String.o )
+[ 5 of 14] Compiling Text.Megaparsec.Text ( Text/Megaparsec/Text.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec/Text.o )
+[ 6 of 14] Compiling Text.Megaparsec.Text.Lazy ( Text/Megaparsec/Text/Lazy.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec/Text/Lazy.o )
+[ 7 of 14] Compiling Text.Megaparsec.Combinator ( Text/Megaparsec/Combinator.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec/Combinator.o )
+[ 8 of 14] Compiling Text.Megaparsec.Expr ( Text/Megaparsec/Expr.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec/Expr.o )
+[ 9 of 14] Compiling Text.Megaparsec.Perm ( Text/Megaparsec/Perm.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec/Perm.o )
+[10 of 14] Compiling Text.Megaparsec.Char ( Text/Megaparsec/Char.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec/Char.o )
+[11 of 14] Compiling Text.Megaparsec.Lexer ( Text/Megaparsec/Lexer.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec/Lexer.o )
+[12 of 14] Compiling Text.Megaparsec.ByteString.Lazy ( Text/Megaparsec/ByteString/Lazy.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec/ByteString/Lazy.o )
+[13 of 14] Compiling Text.Megaparsec.ByteString ( Text/Megaparsec/ByteString.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec/ByteString.o )
+[14 of 14] Compiling Text.Megaparsec  ( Text/Megaparsec.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Text/Megaparsec.o )
+Installing library in
+/Users/chris/.stack/snapshots/x86_64-osx/lts-8.12/8.0.2/lib/x86_64-osx-ghc-8.0.2/megaparsec-5.2.0-20VD1iYD3ayJUmkRrEccYt
+Registering megaparsec-5.2.0...

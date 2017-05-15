@@ -1,0 +1,133 @@
+
+==================== FINAL INTERFACE ====================
+2017-05-08 22:14:37.570366 UTC
+
+interface interpreter-0.1.0.0-1fQkz0Rh1MTBdq4SuTfqDC:Eval 8002
+  interface hash: c447414332b137333cf4a8aa0c177b74
+  ABI hash: 004f6f4ce448dd542da9482406b8b732
+  export-list hash: d9decfd5a5f2753e1c8182ed0f3a2bc6
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 109ed20b2b48e481695a45f2eeadefbe
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Eval.evaluate
+module dependencies: Typed Untyped
+package dependencies: array-0.5.1.1@array-0.5.1.1 base-4.9.1.0*
+                      constraints-0.9.1@constraints-0.9.1-IKxvSRhfDv98qyzrwD5Wgx
+                      containers-0.5.7.1@containers-0.5.7.1*
+                      deepseq-1.4.2.0@deepseq-1.4.2.0 ghc-prim-0.5.0.0
+                      integer-gmp-1.0.0.1 mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6
+                      transformers-0.5.2.0@transformers-0.5.2.0
+orphans: base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
+         transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Error
+family instance modules: base-4.9.1.0:Control.Applicative
+                         base-4.9.1.0:Data.Complex base-4.9.1.0:Data.Either
+                         base-4.9.1.0:Data.Functor.Const base-4.9.1.0:Data.Functor.Identity
+                         base-4.9.1.0:Data.List.NonEmpty base-4.9.1.0:Data.Monoid
+                         base-4.9.1.0:Data.Semigroup base-4.9.1.0:Data.Type.Equality
+                         base-4.9.1.0:Data.Version base-4.9.1.0:Data.Void
+                         base-4.9.1.0:GHC.Exts base-4.9.1.0:GHC.Generics
+                         base-4.9.1.0:GHC.IO.Exception base-4.9.1.0:GHC.TypeLits
+                         containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
+                         containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
+import  -/  base-4.9.1.0:Data.Functor 5ab1dc703df5b482e77efb697833ca3c
+import  -/  base-4.9.1.0:Data.Maybe d876c4ffe4b3c43755a781e8ad860d88
+import  -/  base-4.9.1.0:GHC.Base c4231c43c07e46080a26bf94094c7aa1
+import  -/  base-4.9.1.0:GHC.Err 3bba35a16538d33d424682ce66876cdd
+import  -/  base-4.9.1.0:GHC.Num 00bfaa7b2f9d6084913c0697a8a49ec8
+import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
+import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base 8b155a212edaca6c85bcefe65a8bc505
+import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map.Strict f81ee5f2f6ed64270eb463b87b6da821
+import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
+import  -/  Typed b3c1ca0d557f0c1969e4ef562840b336
+  exports: bc6d23e778a81a742b7ad4505fd2c896
+  A bd43c76b27d2645a2413cf21b8278c21
+  Abs fb93e3842c0daccfc2efdef93d6abc5b
+  Add 16ab876e5be305ecbfa060d3bdfd56be
+  And 0eb759660b14594e74f445c7a9127ffc
+  BinOp 0a267996ab660bba2716c69da3ee1889
+  BinOp b3b0e4dc54bb105b8ac38bc8c57d66f2
+  Equ e9ff1a9c00df65fc00ac13990b096cb4
+  Gt da5f007be715d2568fc7ec8a9b4f3600
+  Gte 10353d53c88c6ac92bd5e05374f96bad
+  IfThenElse f1381c5f6a3098185d4b44525488445d
+  Let 1527d83c536ee5ff79b14b81b80d36e3
+  Literal 83ab7158bf35f88b56f88d96128c3004
+  Lt feee323408a0692fecb29fcf10d07825
+  Lte 261d7ab493b6303c6c959402bbc831a5
+  Mul 53b2468330c17b7049fcddbc86e1e378
+  Neq c49a1524b0323798263ca4dbcc25d107
+  Not e36433beaf044bd91d807e1715fcd254
+  Or 86bd436edd5c0224a35ee96b7d5a40d8
+  Sub ba9c9bcdb522e6b998c12ee177c14b5e
+  TExpr 9388bc4fb9ed37a0145a5baa5d0960c4
+  UnOp 778a1c5f17e249d3eb52573e15d32c36
+  UnOp 6112f022e3716ed024171069f7d176e5
+  VBool f2187c7ba97f063c812d7115d2771184
+  VDouble e2d0c333087e13668c0228d11804118d
+  VInt 36154fc46d7d102e9514274799954968
+  Value dc9da96df8c7761b76a04c27a4c0045b
+  Variable 6421f3f863ba29b18fef352bc965ef82
+import  -/  mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6:Control.Monad.Except 3bb0e2598193c1ba00c9723945e93004
+import  -/  mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6:Control.Monad.State.Class 6d31234b0a911b56412061943d18b89e
+import  -/  mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6:Control.Monad.State.Strict eff0af50b9ed40c32939885d02cca72b
+import  -/  transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.State.Strict 978f397cc30fa26d55cf117e3751a6ed
+aed63875ff9879bf2f74efd626a0a721
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module Eval.$trModule2 Eval.$trModule1) -}
+bf74734f3a5b164816fd4571b19f3511
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "Eval"#) -}
+c07cc8524e0413dfb63dff81d288ca5d
+  $trModule2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS
+                   "interpreter-0.1.0.0-1fQkz0Rh1MTBdq4SuTfqDC"#) -}
+72e4b469cb27dfaa38f6970124af0f32
+  $wevaluate' ::
+    Typed.TExpr ty -> Eval.EvalContext -> (# ty, Eval.EvalContext #)
+  {- Arity: 2, Strictness: <S,1*U><L,U>, Inline: [0] -}
+e431d7fc4b9a79892851906cb05ac215
+  type EvalContext =
+    Data.Map.Base.Map GHC.Base.String (Typed.A Typed.TExpr)
+affd37a0484d3fe4c7a84eb90fafbee3
+  type EvalM a =
+    Control.Monad.Trans.State.Strict.State Eval.EvalContext a
+b7b4fd9a946d2e3277605eedba79a74d
+  evaluate :: Typed.TExpr ty -> ty
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ ty (texpr :: Typed.TExpr ty) ->
+                 case (Eval.evaluate1
+                         @ ty
+                         texpr
+                         (Data.Map.Base.Tip @ GHC.Base.String @ (Typed.A Typed.TExpr)))
+                        `cast`
+                      (Data.Functor.Identity.N:Identity[0]
+                           <(ty, Eval.EvalContext)>_R) of wild { (,) x ds1 ->
+                 x }) -}
+d7b6a67d184a6aa6ec9f6fc1366a7cdb
+  evaluate1 ::
+    Typed.TExpr ty
+    -> Eval.EvalContext
+    -> Data.Functor.Identity.Identity (ty, Eval.EvalContext)
+  {- Arity: 2, Strictness: <S,1*U><L,U>m, Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ @ ty (w :: Typed.TExpr ty) (w1 :: Eval.EvalContext) ->
+                 case Eval.$wevaluate' @ ty w w1 of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2)
+                   `cast`
+                 (Sym (Data.Functor.Identity.N:Identity[0]
+                           <(ty, Eval.EvalContext)>_R)) }) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+

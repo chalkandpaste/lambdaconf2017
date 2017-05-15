@@ -7,17 +7,18 @@ module Repl
   , defaultSettings
   ) where
 
+import Eval
 import Parser
 import Typed
 import Untyped
 
-
-import Control.Monad.IO.Class
 import Control.Monad.Except
+import Control.Monad.IO.Class
+import Control.Monad.State.Strict
 import Control.Monad.Trans.Except
 
-import Data.Map.Lazy as Map
 import Data.Constraint
+import Data.Map.Lazy as Map
 
 import System.Console.Haskeline
 import Text.Megaparsec
@@ -27,25 +28,24 @@ repl = do
   inputMaybe <- getInputLine "> "
   case inputMaybe of
     Nothing -> return () -- Ctrl + D
+
     Just input -> doExcept $ do
-      parsed <- withExcept show . except $ parse expressionParser "" input
-      simplified <- simplifyExpression Map.empty parsed
-      typed ::: ty <- checkExpression simplified
-      case checkShow ty of
-        Just Dict -> return . show $ evaluate typed
-        Nothing -> throwError "this ought not happen"
-  where
-    checkShow :: Type x -> Maybe (Dict (Show x))
-    checkShow Int    = Just Dict
-    checkShow Bool   = Just Dict
-    checkShow Double = Just Dict
-    checkShow _      = Nothing
+      expr <- withExcept show . except $ parse expressionParser "" input
+      A (texpr :*: ty) <- checkExpression expr
+      Dict <- checkShow ty
+      return . show $ evaluate texpr
 
-    cont :: Show a => a -> InputT IO ()
-    cont x = lift (print x) >> repl
+cont :: Show a => a -> InputT IO ()
+cont x = lift (print x) >> repl
 
-    doEither :: Show a => Either String a -> InputT IO ()
-    doEither = either cont cont
+doEither :: Show a => Either String a -> InputT IO ()
+doEither = either cont cont
 
-    doExcept :: Show a => Except String a -> InputT IO ()
-    doExcept = doEither . runExcept
+doExcept :: Show a => Except String a -> InputT IO ()
+doExcept = doEither . runExcept
+
+checkShow :: Monad m => Type x -> m (Dict (Show x))
+checkShow Int    = return Dict
+checkShow Bool   = return Dict
+checkShow Double = return Dict
+

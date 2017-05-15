@@ -1,0 +1,32 @@
+[1 of 2] Compiling Main             ( /private/var/folders/tn/y9l00b410kx2w1_l4tp20_r80000gt/T/stack63550/terminfo-0.4.1.0/Setup.lhs, /private/var/folders/tn/y9l00b410kx2w1_l4tp20_r80000gt/T/stack63550/terminfo-0.4.1.0/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/Main.o )
+[2 of 2] Compiling StackSetupShim   ( /Users/chris/.stack/setup-exe-src/setup-shim-mPHDZzAJ.hs, /private/var/folders/tn/y9l00b410kx2w1_l4tp20_r80000gt/T/stack63550/terminfo-0.4.1.0/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/StackSetupShim.o )
+Linking /private/var/folders/tn/y9l00b410kx2w1_l4tp20_r80000gt/T/stack63550/terminfo-0.4.1.0/.stack-work/dist/x86_64-osx/Cabal-1.24.2.0/setup/setup ...
+Configuring terminfo-0.4.1.0...
+configure: WARNING: unrecognized options: --with-compiler
+checking for gcc... /usr/bin/gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to accept ISO C89... none needed
+checking for setupterm in -ltinfo... no
+checking for setupterm in -lncursesw... no
+checking for setupterm in -lncurses... yes
+configure: creating ./config.status
+config.status: creating terminfo.buildinfo
+configure: WARNING: unrecognized options: --with-compiler
+Building terminfo-0.4.1.0...
+Preprocessing library terminfo-0.4.1.0...
+[1 of 7] Compiling System.Console.Terminfo.Base ( System/Console/Terminfo/Base.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Console/Terminfo/Base.o )
+[2 of 7] Compiling System.Console.Terminfo.Color ( System/Console/Terminfo/Color.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Console/Terminfo/Color.o )
+[3 of 7] Compiling System.Console.Terminfo.Cursor ( System/Console/Terminfo/Cursor.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Console/Terminfo/Cursor.o )
+[4 of 7] Compiling System.Console.Terminfo.Edit ( System/Console/Terminfo/Edit.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Console/Terminfo/Edit.o )
+[5 of 7] Compiling System.Console.Terminfo.Effects ( System/Console/Terminfo/Effects.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Console/Terminfo/Effects.o )
+[6 of 7] Compiling System.Console.Terminfo.Keys ( System/Console/Terminfo/Keys.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Console/Terminfo/Keys.o )
+[7 of 7] Compiling System.Console.Terminfo ( System/Console/Terminfo.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/Console/Terminfo.o )
+Installing library in
+/Users/chris/.stack/snapshots/x86_64-osx/lts-8.12/8.0.2/lib/x86_64-osx-ghc-8.0.2/terminfo-0.4.1.0-FNScbjwxa2Y3p4e5RvG3l
+Registering terminfo-0.4.1.0...
