@@ -34,13 +34,13 @@ data Type ty where
 
 data TExpr ty where
   Literal   :: Value ty -> TExpr ty
-  Variable  :: String -> TExpr ty
+  Variable  :: String -> Type ty -> TExpr ty -- use of Type here as witness
   UnOp      :: UnOp ty -> TExpr ty -> TExpr ty
   BinOp     :: BinOp ty ty'
             -> TExpr ty
             -> TExpr ty
             -> TExpr ty'
-  Let       :: String -> TExpr ty -> TExpr ty'
+  Let       :: String -> Type ty -> TExpr ty -> TExpr ty' -> TExpr ty'
   IfThenElse :: TExpr Bool
              -> TExpr ty
              -> TExpr ty
@@ -70,6 +70,8 @@ data BinOp ty ty' where
 
 type TypedExpression = TExpr :*: Type
 
+{-                       Context functions                                 -}
+
 type TypeContext = Map String (A Type)
 
 emptyContext :: TypeContext
@@ -80,8 +82,9 @@ type TypeCheckM a = StateT TypeContext (Except String) a
 lookupContext :: String -> TypeCheckM (Maybe (A Type))
 lookupContext ident = Map.lookup ident <$> get
 
-addToContext :: String -> A Type -> TypeCheckM ()
-addToContext ident expr = put =<< Map.insert ident expr <$> get
+subcontext :: String -> A Type -> TypeCheckM x -> TypeCheckM x
+subcontext ident ty x = withStateT (Map.insert ident ty) x
+{-                       Checking functions                                 -}
 
 checkExpression :: Untyped.Expression -> Except String (A TypedExpression)
 checkExpression expr = evalStateT (checkExpression' expr) emptyContext
@@ -97,28 +100,26 @@ checkExpression' = \case
   Untyped.Variable ident          -> do
     maybeTexpr <- lookupContext ident
     case maybeTexpr of
-      Just (A ty) -> return . A $ Variable ident :*: ty
+      Just (A ty) -> return . A $ Variable ident ty :*: ty
       Nothing     -> throwError $ "variable `" ++ ident ++ "` does not exist in scope"
 
   Untyped.UnOp unOp expr          -> checkUnOp unOp expr
   Untyped.BinOp binOp expr1 expr2 -> checkBinOp binOp expr1 expr2
-  Untyped.Let ident expr1 expr2   -> undefined
-  Untyped.IfThenElse pred expr1 expr2 -> undefined
+  Untyped.Let ident expr1 expr2   -> do
+    A (ltexpr :*: lty) <- checkExpression' expr1
+    A (rtexpr :*: rty) <- subcontext ident (A lty) $ checkExpression' expr2
+    return . A $ Let ident lty ltexpr rtexpr :*: rty
 
-checkNum :: Type ty -> TypeCheckM (Dict (Num ty))
-checkNum Bool   = throwError "Bool does not satisfy Num constraint"
-checkNum Int    = return Dict
-checkNum Double = return Dict
+  Untyped.IfThenElse pred expr1 expr2 -> do
+    A (tpred :*: pTy) <- checkExpression' pred
+    A (texpr1 :*: ty1) <- checkExpression' pred
+    A (texpr2 :*: ty2) <- checkExpression' pred
+    Dict <- checkTypeEquality Bool pTy
+    Dict <- checkTypeEquality ty1 ty2
 
-checkOrd :: Type ty -> TypeCheckM (Dict (Ord ty))
-checkOrd Bool   = return Dict
-checkOrd Int    = return Dict
-checkOrd Double = return Dict
+    return . A $ IfThenElse tpred texpr1 texpr2 :*: ty1
 
-checkEq :: Type ty -> TypeCheckM (Dict (Eq ty))
-checkEq Bool   = return Dict
-checkEq Int    = return Dict
-checkEq Double = return Dict
+
 
 checkUnOp
   :: Untyped.UnOp
@@ -209,17 +210,33 @@ checkBinOp binOp expr1 expr2 =
       Dict <- checkTypeEquality ty1 ty2
       Dict <- checkNum ty1
       return . A $ BinOp Mul te1 te2 :*: ty1
-  where
-    checkTypeEquality
-      :: Type ty
-      -> Type ty'
-      -> TypeCheckM (Dict (ty ~ ty'))
-    checkTypeEquality ty1 ty2 =
-      case (ty1, ty2) of
-        (Bool, Bool)     -> return Dict
-        (Int, Int)       -> return Dict
-        (Double, Double) -> return Dict
-        _                -> throwError "left and right hand types do not match"
+
+checkTypeEquality
+  :: Type ty
+  -> Type ty'
+  -> TypeCheckM (Dict (ty ~ ty'))
+checkTypeEquality ty1 ty2 =
+  case (ty1, ty2) of
+    (Bool, Bool)     -> return Dict
+    (Int, Int)       -> return Dict
+    (Double, Double) -> return Dict
+    _                -> throwError "left and right hand types do not match"
+
+checkNum :: Type ty -> TypeCheckM (Dict (Num ty))
+checkNum Bool   = throwError "Bool does not satisfy Num constraint"
+checkNum Int    = return Dict
+checkNum Double = return Dict
+
+checkOrd :: Type ty -> TypeCheckM (Dict (Ord ty))
+checkOrd Bool   = return Dict
+checkOrd Int    = return Dict
+checkOrd Double = return Dict
+
+checkEq :: Type ty -> TypeCheckM (Dict (Eq ty))
+checkEq Bool   = return Dict
+checkEq Int    = return Dict
+checkEq Double = return Dict
+
 
 checkValue :: Untyped.Value -> A (Value :*: Type)
 checkValue = \case

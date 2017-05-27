@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2017-05-08 22:15:04.144005 UTC
+2017-05-27 16:17:49.198191 UTC
 
 interface interpreter-0.1.0.0-1fQkz0Rh1MTBdq4SuTfqDC:Repl 8002
-  interface hash: 9e004fdda8d7cca9bb52918b37495946
+  interface hash: af6094d12d417cd82859af63c5cd6402
   ABI hash: b65b34a09ec0d89fb5150bdb9a9457a4
   export-list hash: 1a77c973057f1a938e1badb2cc910c5b
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -94,13 +94,13 @@ import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map.Lazy 93f3e08c64c8d535
 import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
 import  -/  haskeline-0.7.4.0@haskeline-0.7.4.0-DeCMMzb9PSJC3zwcMXMk7s:System.Console.Haskeline 50dffb36d98ede177ddf662dadb994c8
 import  -/  haskeline-0.7.4.0@haskeline-0.7.4.0-DeCMMzb9PSJC3zwcMXMk7s:System.Console.Haskeline.InputT 1b0fe60bef861a93d099f0219322a648
-import  -/  Eval 004f6f4ce448dd542da9482406b8b732
+import  -/  Eval 513ead3eb12fa9370a8b30ea64951e97
   exports: d9decfd5a5f2753e1c8182ed0f3a2bc6
-  evaluate b7b4fd9a946d2e3277605eedba79a74d
+  evaluate cb8d7d617e4099ad39950e5941aa7c12
 import  -/  Parser 83da577fc712cc0d18545f0e266a3338
   exports: c40da1d421cac780f7e376760cb00c66
   expressionParser a2823acd2fc5ff7586cf35cf742fbee6
-import  -/  Typed b3c1ca0d557f0c1969e4ef562840b336
+import  -/  Typed 396b753765ec344a951e6f0c388b8b99
   exports: bc6d23e778a81a742b7ad4505fd2c896
   :*: 36653f0201fd5b5a0bb96d7e90472d0e
   A 641a7f797a27934320f1719d97fed4d6
@@ -108,7 +108,7 @@ import  -/  Typed b3c1ca0d557f0c1969e4ef562840b336
   Double ceb4149ae5a4e11c50ee381257be10b1
   Int d6da54af2034cb751b5e6be0960e9e4a
   Type b3e665e6455a983817ddf04cfe004d4b
-  checkExpression f73c84e483fb7ddf6c106678c20bc859
+  checkExpression 99b42dcd1593015b74b8e8fc7b0b4041
 import  -/  Untyped cd764f474ae7e5fca0dd1819c96f53e1
   exports: dc522402414ff94c5b8b97f4faa1d043
 import  -/  megaparsec-5.2.0@megaparsec-5.2.0-20VD1iYD3ayJUmkRrEccYt:Text.Megaparsec 9905e224ce45145021570092843caed3

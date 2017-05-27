@@ -5,7 +5,7 @@
 
 module Eval (evaluate) where
 
-import Typed hiding (addToContext, lookupContext)
+import Typed hiding (lookupContext, subcontext)
 
 import Control.Monad.Except
 import Control.Monad.State.Strict
@@ -14,40 +14,54 @@ import Data.Map.Strict as Map
 import Data.Maybe
 
 
-type EvalContext = Map String (A TExpr)
+type EvalContext = Map String (A Value)
 
 emptyContext :: EvalContext
 emptyContext = Map.empty
 
 type EvalM a = State EvalContext a
 
-lookupContext :: String -> EvalM (A TExpr)
+lookupContext :: String -> EvalM (A Value)
 lookupContext ident = fromJust . Map.lookup ident <$> get
 
-addToContext :: String -> A TExpr -> EvalM ()
-addToContext ident expr = put =<< Map.insert ident expr <$> get
+subcontext :: String -> A Value -> EvalM x -> EvalM x
+subcontext ident ty x = withStateT (Map.insert ident ty) x
 
 evaluate :: TExpr ty -> ty
-evaluate texpr = evalState (evaluate texpr) emptyContext
+evaluate texpr = evalState (evaluate' texpr) emptyContext
 
 evaluate' :: forall ty. TExpr ty -> EvalM ty
 evaluate' = \case
   Literal v           -> value v
-  (Variable ident :: TExpr ty)     -> undefined -- do
-    {-A (texpr :: TExpr ty) <- lookupContext ident-}
-    {-evaluate' texpr-}
-  UnOp unOp expr      -> evaluate'UnOp unOp expr
-  BinOp binOp e1 e2   -> evaluate'BinOp binOp e1 e2
-  Let ident e1        -> undefined
-  IfThenElse p e1 e2  -> undefined
+  Variable ident ty   -> do
+    A tval <- lookupContext ident
+    -- unfortunately we have to witness to the type here
+    case (tval, ty) of
+      (VBool b, Bool)     -> return b
+      (VInt i, Int)       -> return i
+      (VDouble d, Double) -> return d
+  UnOp unOp expr      -> evaluateUnOp unOp expr
+  BinOp binOp e1 e2   -> evaluateBinOp binOp e1 e2
+  Let ident (ty :: Type t) (e1 :: TExpr t) e2  -> do
+    (v :: t) <- evaluate' e1
+    let
+      val = case ty of
+        Bool   -> A $ VBool v
+        Int    -> A $ VInt v
+        Double -> A $ VDouble v
+    subcontext ident val $ evaluate' e2
 
-evaluate'UnOp :: UnOp ty -> TExpr ty -> EvalM ty
-evaluate'UnOp unOp expr = case unOp of
+  IfThenElse p e1 e2  -> do
+    pv <- evaluate' p
+    if pv then evaluate' e1 else evaluate' e2
+
+evaluateUnOp :: UnOp ty -> TExpr ty -> EvalM ty
+evaluateUnOp unOp expr = case unOp of
   Not -> not <$> evaluate' expr
   Abs -> abs <$> evaluate' expr
 
-evaluate'BinOp :: BinOp ty ty' -> TExpr ty -> TExpr ty -> EvalM ty'
-evaluate'BinOp binOp expr1 expr2 = case binOp of
+evaluateBinOp :: BinOp ty ty' -> TExpr ty -> TExpr ty -> EvalM ty'
+evaluateBinOp binOp expr1 expr2 = case binOp of
   And -> (&&) <$> (evaluate' expr1) <*> (evaluate' expr2)
   Or  -> (||) <$> (evaluate' expr1) <*> (evaluate' expr2)
   Equ -> (==) <$> (evaluate' expr1) <*> (evaluate' expr2)

@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2017-05-08 22:11:35.7822 UTC
+2017-05-27 16:11:37.591703 UTC
 
 interface interpreter-0.1.0.0-1fQkz0Rh1MTBdq4SuTfqDC:Typed 8002
-  interface hash: 031920830e23b335bf060ec55f3123e6
-  ABI hash: b3c1ca0d557f0c1969e4ef562840b336
+  interface hash: 760f374c8c7ad859712a0b491a551bcd
+  ABI hash: 396b753765ec344a951e6f0c388b8b99
   export-list hash: bc6d23e778a81a742b7ad4505fd2c896
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 48fe95131cd2fe8743254f5e1cd69d57
@@ -43,7 +43,6 @@ family instance modules: base-4.9.1.0:Control.Applicative
 import  -/  base-4.9.1.0:Data.Functor 5ab1dc703df5b482e77efb697833ca3c
 import  -/  base-4.9.1.0:Data.Type.Equality e58d97d060ef5a0f7906bf33d6e50df2
 import  -/  base-4.9.1.0:GHC.Base c4231c43c07e46080a26bf94094c7aa1
-import  -/  base-4.9.1.0:GHC.Err 3bba35a16538d33d424682ce66876cdd
 import  -/  base-4.9.1.0:GHC.Num 00bfaa7b2f9d6084913c0697a8a49ec8
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
 import  -/  constraints-0.9.1@constraints-0.9.1-IKxvSRhfDv98qyzrwD5Wgx:Data.Constraint 9c5e2b1f36c33093d2f5a2f7abc1a6db
@@ -84,6 +83,13 @@ import  -/  mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6:Control.Monad.State.Class
 import  -/  mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6:Control.Monad.State.Strict eff0af50b9ed40c32939885d02cca72b
 import  -/  transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Except cf549ed58fbe6804d519833d92803f4c
 import  -/  transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.State.Strict 978f397cc30fa26d55cf117e3751a6ed
+699c7461422a8f9ad4839013c23dc55b
+  $sinsert_$sgo4 ::
+    GHC.Base.String
+    -> a1
+    -> Data.Map.Base.Map GHC.Base.String a1
+    -> Data.Map.Base.Map GHC.Base.String a1
+  {- Arity: 3, Strictness: <S,1*U><S,1*U><S,1*U> -}
 fcbb4c080dd0ff223cfb8d24785de2df
   $slookup1 ::
     GHC.Base.String
@@ -530,15 +536,16 @@ b3b0e4dc54bb105b8ac38bc8c57d66f2
     Add :: GHC.Num.Num ty => BinOp ty ty
     Sub :: GHC.Num.Num ty => BinOp ty ty
     Mul :: GHC.Num.Num ty => BinOp ty ty
-9388bc4fb9ed37a0145a5baa5d0960c4
+600dccf227667fe2e32da5da48c7fc47
   type role TExpr nominal
   data TExpr ty where
     Literal :: (Typed.Value ty) -> TExpr ty
-    Variable :: GHC.Base.String -> TExpr ty
+    Variable :: GHC.Base.String -> (Typed.Type ty) -> TExpr ty
     UnOp :: (Typed.UnOp ty) -> (Typed.TExpr ty) -> TExpr ty
     BinOp :: (Typed.BinOp ty1 ty) -> (Typed.TExpr ty1)
              -> (Typed.TExpr ty1) -> TExpr ty
-    Let :: GHC.Base.String -> (Typed.TExpr ty1) -> TExpr ty
+    Let :: GHC.Base.String -> (Typed.Type ty1) -> (Typed.TExpr ty1)
+           -> (Typed.TExpr ty) -> TExpr ty
     IfThenElse :: (Typed.TExpr GHC.Types.Bool) -> (Typed.TExpr ty)
                   -> (Typed.TExpr ty) -> TExpr ty
 b3e665e6455a983817ddf04cfe004d4b
@@ -556,7 +563,7 @@ b3e665e6455a983817ddf04cfe004d4b
 2071235c5f0734c72598a5a728d841c3
   type TypeContext =
     Data.Map.Base.Map GHC.Base.String (Typed.A Typed.Type)
-98720e1aade255e69b524bc98a143766
+8eb537d2eac304cf71d00ec6978ed528
   type TypedExpression = Typed.TExpr Typed.:*: Typed.Type :: * -> *
 6112f022e3716ed024171069f7d176e5
   type role UnOp nominal
@@ -569,7 +576,7 @@ dc9da96df8c7761b76a04c27a4c0045b
     VBool :: GHC.Types.Bool -> Value GHC.Types.Bool
     VInt :: GHC.Types.Int -> Value GHC.Types.Int
     VDouble :: GHC.Types.Double -> Value GHC.Types.Double
-f73c84e483fb7ddf6c106678c20bc859
+99b42dcd1593015b74b8e8fc7b0b4041
   checkExpression ::
     Untyped.Expression
     -> Control.Monad.Trans.Except.Except
@@ -619,7 +626,7 @@ f73c84e483fb7ddf6c106678c20bc859
                                      <[GHC.Types.Char]>_N
                                      <Data.Functor.Identity.Identity>_R
                                      <Typed.A Typed.TypedExpression>_N))) } }) -}
-400fa6ad79b05707451cc58ddffc8e9e
+6f12b4f094ad35d56f4220d0928e2d67
   checkExpression1 ::
     Untyped.Expression
     -> Typed.TypeContext
